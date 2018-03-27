@@ -21,5 +21,4 @@ class FlatbuffersTestConan(ConanFile):
 
     def test(self):
         os.chdir("bin")
-        self.run(".%sflatc --version" % os.sep)
         self.run(".%sexample" % os.sep)

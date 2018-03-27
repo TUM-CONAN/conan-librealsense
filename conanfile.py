@@ -18,7 +18,7 @@ class LibRealsenseConan(ConanFile):
 
     default_options = "shared=False"
 
-    requirements = (
+    requires = (
         "glfw/[>=3.2.1]@camposs/stable",
         )
 
