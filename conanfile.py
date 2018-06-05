@@ -4,7 +4,7 @@ from conans.util import files
 
 
 class LibRealsenseConan(ConanFile):
-    version = "2.10.2"
+    version = "2.12.0"
 
     name = "librealsense"
     license = "https://raw.githubusercontent.com/IntelRealSense/librealsense/master/LICENSE"
