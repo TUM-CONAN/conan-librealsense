@@ -48,6 +48,10 @@ class LibRealsenseConan(ConanFile):
             cmake.definitions["BUILD_PYTHON_BINDINGS"] = "OFF"
             cmake.definitions["BUILD_UNIT_TESTS"] = "OFF"
 
+            # hints to find GLFW
+            cmake.definitions["CMAKE_INCLUDE_PATH"] = ":".join(self.deps_cpp_info["glfw"].include_paths)
+            cmake.definitions["CMAKE_LIBRARY_PATH"] = ":".join(self.deps_cpp_info["glfw"].lib_paths)
+
             # what is this ??
             cmake.definitions["ENABLE_ZERO_COPY"] = "OFF"
 
