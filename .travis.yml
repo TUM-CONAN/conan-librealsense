@@ -1,7 +1,7 @@
 
 env:
    global:
-     - CONAN_REFERENCE: "librealsense/2.10.2"
+     - CONAN_REFERENCE: "librealsense/2.16.5"
      - CONAN_USERNAME: "camposs"
      - CONAN_LOGIN_USERNAME: "camposs"
      - CONAN_CHANNEL: "stable"

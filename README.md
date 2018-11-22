@@ -1,4 +1,4 @@
-## This repository holds a conan recipe for librealsense.
+[][]## This repository holds a conan recipe for librealsense.
 
 [Conan.io](https://conan.io) package for [the librealsense C++ library](https://github.com/google/librealsense) project
 
@@ -6,14 +6,14 @@
 
 ### Basic setup
 
-    $ conan install librealsense/2.10.2@camposs/stable
+    $ conan install librealsense/2.16.5@camposs/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    librealsense/2.10.2@camposs/stable
+    librealsense/2.16.5@camposs/stable
 
     [generators]
     txt
@@ -42,7 +42,8 @@ This is a header only library, so nothing needs to be built.
 
 ## Upload
 
-    $ conan upload -r camp librealsense/2.10.2@camposs/stable
+    $ conan upload -r camp librealsense/2.16.5@camposs/stable
 
 ### License
 [License](https://github.com/google/librealsense/master/LICENSE.txt)
+[]: 

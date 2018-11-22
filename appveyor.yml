@@ -5,7 +5,7 @@ environment:
     PYTHON_ARCH: "64"
     
     CONAN_UPLOAD: "https://conan.campar.in.tum.de"
-    CONAN_REFERENCE: "librealsense/2.10.2"
+    CONAN_REFERENCE: "librealsense/2.16.5"
     CONAN_USERNAME: "camposs"
     CONAN_CHANNEL: "stable"
     CONAN_STABLE_BRANCH_PATTERN: "release/*"
