@@ -52,8 +52,13 @@ class LibRealsenseConan(ConanFile):
             cmake.definitions["CMAKE_INCLUDE_PATH"] = ":".join(self.deps_cpp_info["glfw"].include_paths)
             cmake.definitions["CMAKE_LIBRARY_PATH"] = ":".join(self.deps_cpp_info["glfw"].lib_paths)
 
+            if self.settings.os == "Linux":
+                # for now disable graphical examples .. problem with glfw linking / x11
+                cmake.definitions["BUILD_GRAPHICAL_EXAMPLES"] = False
+
             # what is this ??
             cmake.definitions["ENABLE_ZERO_COPY"] = "OFF"
+            cmake.definitions["BUILD_RS400_EXTRAS"] = True
 
             if self.options.shared:
                 cmake.definitions["BUILD_SHARED_LIBS"] = "ON"
