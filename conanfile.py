@@ -91,5 +91,5 @@ class LibRealsenseConan(ConanFile):
         if self.options.with_fileio:
             self.cpp_info.libs = libs
         else:
-            self.cpp_info.libs = [l for l in libs if not "realsense-file" in l]
+            self.cpp_info.libs = [l for l in libs if "realsense-file" not in l]
         self.env_info.PATH.append(os.path.join(self.package_folder, "bin"))
