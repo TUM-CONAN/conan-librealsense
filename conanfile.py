@@ -62,6 +62,7 @@ class LibRealsenseConan(ConanFile):
 
             if self.options.shared:
                 cmake.definitions["BUILD_SHARED_LIBS"] = "ON"
+                cmake.definitions["BUILD_WITH_STATIC_CRT"] = "OFF"
                 if tools.os_info.is_macos:
                     cmake.definitions["CMAKE_MACOSX_RPATH"] = "ON"
             else:
