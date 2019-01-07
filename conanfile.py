@@ -14,9 +14,15 @@ class LibRealsenseConan(ConanFile):
     generators = "cmake"
     options = {
         "shared": [True, False],
+        "with_fileio": [True, False],
+        "with_examples": [True, False],
         }
 
-    default_options = "shared=False"
+    default_options = (
+        "shared=False",
+        "with_fileio=False",
+        "with_examples=False",
+        )
 
     requires = (
         "glfw/[>=3.2.1]@camposs/stable",
@@ -41,8 +47,15 @@ class LibRealsenseConan(ConanFile):
         files.mkdir(self.build_dir)
         with tools.chdir(self.build_dir):
             cmake = CMake(self)
-            cmake.definitions["BUILD_EXAMPLES"] = "ON"
-            cmake.definitions["BUILD_GRAPHICAL_EXAMPLES"] = "ON"
+            cmake.definitions["BUILD_EXAMPLES"] = self.options.with_examples
+
+            if self.settings.os == "Linux":
+                # for now disable graphical examples .. problem with glfw linking / x11
+                cmake.definitions["BUILD_GRAPHICAL_EXAMPLES"] = "OFF"
+            else:
+                cmake.definitions["BUILD_GRAPHICAL_EXAMPLES"] = self.options.with_examples
+
+            # don't build additional examples
             cmake.definitions["BUILD_PCL_EXAMPLES"] = "OFF"
             cmake.definitions["BUILD_NODEJS_BINDINGS"] = "OFF"
             cmake.definitions["BUILD_PYTHON_BINDINGS"] = "OFF"
@@ -52,9 +65,6 @@ class LibRealsenseConan(ConanFile):
             cmake.definitions["CMAKE_INCLUDE_PATH"] = ":".join(self.deps_cpp_info["glfw"].include_paths)
             cmake.definitions["CMAKE_LIBRARY_PATH"] = ":".join(self.deps_cpp_info["glfw"].lib_paths)
 
-            if self.settings.os == "Linux":
-                # for now disable graphical examples .. problem with glfw linking / x11
-                cmake.definitions["BUILD_GRAPHICAL_EXAMPLES"] = False
 
             # what is this ??
             cmake.definitions["ENABLE_ZERO_COPY"] = "OFF"
@@ -77,5 +87,9 @@ class LibRealsenseConan(ConanFile):
         self.copy("LICENSE.LibRealSense", src=self.folder_name)
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
+        libs = tools.collect_libs(self)
+        if self.options.with_fileio:
+            self.cpp_info.libs = libs
+        else:
+            self.cpp_info.libs = [l for l in libs if not "realsense-file" in l]
         self.env_info.PATH.append(os.path.join(self.package_folder, "bin"))
