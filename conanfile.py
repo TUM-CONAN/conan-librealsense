@@ -4,7 +4,7 @@ from conans.util import files
 
 
 class LibRealsenseConan(ConanFile):
-    version = "2.16.5"
+    version = "2.17.1"
 
     name = "librealsense"
     license = "https://raw.githubusercontent.com/IntelRealSense/librealsense/master/LICENSE"
@@ -49,11 +49,11 @@ class LibRealsenseConan(ConanFile):
             cmake = CMake(self)
             cmake.definitions["BUILD_EXAMPLES"] = self.options.with_examples
 
-            if self.settings.os == "Linux":
+            # if self.settings.os == "Linux":
                 # for now disable graphical examples .. problem with glfw linking / x11
-                cmake.definitions["BUILD_GRAPHICAL_EXAMPLES"] = "OFF"
-            else:
-                cmake.definitions["BUILD_GRAPHICAL_EXAMPLES"] = self.options.with_examples
+                # cmake.definitions["BUILD_GRAPHICAL_EXAMPLES"] = "OFF"
+            # else:
+            cmake.definitions["BUILD_GRAPHICAL_EXAMPLES"] = self.options.with_examples
 
             # don't build additional examples
             cmake.definitions["BUILD_PCL_EXAMPLES"] = "OFF"
