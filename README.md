@@ -6,14 +6,14 @@
 
 ### Basic setup
 
-    $ conan install librealsense/2.20.0@camposs/stable
+    $ conan install librealsense/2.24.0@camposs/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    librealsense/2.20.0@camposs/stable
+    librealsense/2.24.0@camposs/stable
 
     [generators]
     txt
@@ -42,7 +42,7 @@ This is a header only library, so nothing needs to be built.
 
 ## Upload
 
-    $ conan upload -r camp librealsense/2.20.0@camposs/stable
+    $ conan upload -r camp librealsense/2.24.0@camposs/stable
 
 ### License
 [License](https://github.com/google/librealsense/master/LICENSE.txt)
