@@ -4,7 +4,7 @@ from conans.util import files
 
 
 class LibRealsenseConan(ConanFile):
-    version = "2.24.0"
+    version = "2.25.0"
 
     name = "librealsense"
     license = "https://raw.githubusercontent.com/IntelRealSense/librealsense/master/LICENSE"
@@ -26,6 +26,8 @@ class LibRealsenseConan(ConanFile):
         "glfw/[>=3.2.1]@camposs/stable",
         )
 
+    short_paths = True
+    
     # The folder name when the *.tar.gz release is extracted
     folder_name = "librealsense-%s" % version
     # The name of the archive that is downloaded from Github
